@@ -30,17 +30,65 @@
       position: absolute;
       top: 20px;
       right: 30px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
     }
 
     nav.nav-top-right a {
       color: white;
-      margin-left: 20px;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 700;
     }
 
     nav.nav-top-right a:hover {
       text-decoration: underline;
+    }
+
+    /* Contact Dropdown Styles */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background-color: transparent;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #f9f9f9;
+      color: black;
+      min-width: 340px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+
+    .dropdown-content div {
+      padding: 18px 24px;
+      border-bottom: 1px solid #ddd;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .dropdown-content div:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #333;
     }
 
     .hero {
@@ -81,7 +129,7 @@
       background: #a52929;
     }
 
-    .dropdown-content {
+    .dropdown-content-main {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.6s ease, padding 0.4s ease;
@@ -91,7 +139,7 @@
       padding: 0 20px;
     }
 
-    .dropdown-section:hover .dropdown-content {
+    .dropdown-section:hover .dropdown-content-main {
       max-height: 1000px;
       padding: 20px;
     }
@@ -117,8 +165,18 @@
   <header>
     <img src="flaxbournelogo.jpg" alt="Flaxbourne Community Association" class="logo-image" />
     <nav class="nav-top-right">
-      <a href="#">Home</a>
-      <a href="#">Contact</a>
+      <a href="#"><strong>Home</strong></a>
+      <div class="dropdown">
+        <button class="dropbtn"><strong>Community Contacts ▼</strong></button>
+        <div class="dropdown-content">
+          <div>📌 <strong>Flaxbourne Community Assn Chair</strong><br>John Hickman<br>📞 021 731 026</div>
+          <div>📝 <strong>Flaxbourne Community Assn Secretary</strong><br>Candi Callaghan<br>📞 PHONE NUMBER</div>
+          <div>💧 <strong>Ward Water Scheme Chair</strong><br>Angus Moore<br>📞 PHONE NUMBER</div>
+          <div>🏛️ <strong>Flaxbourne Heritage Chair</strong><br>Kevin Loe<br>📞 PHONE NUMBER</div>
+          <div>🐑 <strong>Flaxbourne A&amp;P Assn President</strong><br>Angus Moore<br>📞 PHONE NUMBER</div>
+          <div>🚿 <strong>Taimate Water Scheme Chair</strong><br>John Hickman<br>📞 021 731 026</div>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -135,21 +193,19 @@
 
     <div class="dropdown-section">
       <h2>Availability Calendar ▼</h2>
-      <div class="dropdown-content">
+      <div class="dropdown-content-main">
         <p><strong>Note:</strong> This calendar is for viewing only. To make a booking, please use the form below.</p>
-        <iframe
-          src="https://calendar.google.com/calendar/embed?src=60786703e79b01cd784ce3ae80dbc6e360b201abb4beeaa81c2e185d0a313e9d%40group.calendar.google.com&ctz=Pacific%2FAuckland">
+        <iframe src="https://calendar.google.com/calendar/embed?src=60786703e79b01cd784ce3ae80dbc6e360b201abb4beeaa81c2e185d0a313e9d%40group.calendar.google.com&ctz=Pacific%2FAuckland">
         </iframe>
       </div>
     </div>
 
     <div class="dropdown-section">
       <h2>Booking Request Form ▼</h2>
-      <div class="dropdown-content">
-        <iframe
-          src="https://docs.google.com/forms/d/e/1FAIpQLSdXB9-gjlPbTsUH5RcCfdBy9H16qWIPmKBebUqdUEJYKDQb0A/viewform?embedded=true"
-          marginheight="0"
-          marginwidth="0">
+      <div class="dropdown-content-main">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdXB9-gjlPbTsUH5RcCfdBy9H16qWIPmKBebUqdUEJYKDQb0A/viewform?embedded=true"
+                marginheight="0"
+                marginwidth="0">
           Loading…
         </iframe>
       </div>
