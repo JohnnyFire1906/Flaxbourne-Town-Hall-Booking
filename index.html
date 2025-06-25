@@ -8,22 +8,23 @@
     body {
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
-      background: black url('flaxbournelogo.jpg') no-repeat center center fixed;
-      background-size: 0px;
-      color: white;
+      background: white;
+      color: black;
     }
 
     header {
-      background-color: #000;
-      color: white;
+      background-color: white;
+      color: black;
       padding: 40px 20px 20px 20px;
       text-align: center;
       position: relative;
     }
 
     .logo-image {
-      height: 520px;
-      margin-bottom: 5px;
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      margin-bottom: 10px;
     }
 
     nav.nav-top-right {
@@ -36,7 +37,7 @@
     }
 
     nav.nav-top-right a {
-      color: white;
+      color: black;
       text-decoration: none;
       font-weight: 700;
     }
@@ -45,7 +46,6 @@
       text-decoration: underline;
     }
 
-    /* Contact Dropdown Styles */
     .dropdown {
       position: relative;
       display: inline-block;
@@ -53,7 +53,7 @@
 
     .dropbtn {
       background-color: transparent;
-      color: white;
+      color: black;
       padding: 10px;
       font-size: 16px;
       font-weight: 700;
@@ -67,7 +67,7 @@
       right: 0;
       background-color: #f9f9f9;
       color: black;
-      min-width: 340px;
+      min-width: 350px;
       box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
       z-index: 1;
     }
@@ -88,14 +88,14 @@
     }
 
     .dropdown:hover .dropbtn {
-      background-color: #333;
+      background-color: #f0f0f0;
     }
 
     .hero {
-      background: #000000;
+      background: white;
       text-align: center;
       padding: 40px 20px 20px 20px;
-      color: #ffffff;
+      color: black;
     }
 
     .instruction {
@@ -151,12 +151,27 @@
     }
 
     footer {
-      background: #000000;
-      color: white;
+      background: white;
+      color: black;
       text-align: center;
       padding: 20px;
       font-size: 14px;
       margin-top: 40px;
+      border-top: 1px solid #ccc;
+    }
+
+    @media (max-width: 600px) {
+      nav.nav-top-right {
+        position: static;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .logo-image {
+        max-width: 90%;
+        height: auto;
+      }
     }
   </style>
 </head>
@@ -169,12 +184,12 @@
       <div class="dropdown">
         <button class="dropbtn"><strong>Community Contacts ▼</strong></button>
         <div class="dropdown-content">
-          <div> <strong>Flaxbourne Community Assn Chair</strong><br>John Hickman<br> 021 731 026</div>
-          <div> <strong>Flaxbourne Community Assn Secretary</strong><br>Candi Callaghan<br> 0277 563 708</div>
-          <div> <strong>Ward Water Scheme Chair</strong><br>Angus Moore<br> 0274 513 012</div>
-          <div> <strong>Flaxbourne Heritage Chair</strong><br>Kevin Loe<br> 0274 486 215</div>
-          <div> <strong>Flaxbourne A&amp;P Assn President</strong><br>Angus Moore<br> 0274 513 012</div>
-          <div> <strong>Taimate Water Scheme Chair</strong><br>John Hickman<br> 021 731 026</div>
+          <div><strong>Flaxbourne Community Assn Chair</strong><br>John Hickman<br> 021 731 026</div>
+          <div><strong>Flaxbourne Community Assn Secretary</strong><br>Candi Callaghan<br> 0277 563 708</div>
+          <div><strong>Ward Water Scheme Chair</strong><br>Angus Moore<br> 0274 513 012</div>
+          <div><strong>Flaxbourne Heritage Chair</strong><br>Kevin Loe<br> 0274 486 215</div>
+          <div><strong>Flaxbourne A&amp;P Assn President</strong><br>Angus Moore<br> 0274 513 012</div>
+          <div><strong>Taimate Water Scheme Chair</strong><br>John Hickman<br> 021 731 026</div>
         </div>
       </div>
     </nav>
