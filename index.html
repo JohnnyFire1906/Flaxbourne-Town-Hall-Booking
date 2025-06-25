@@ -1,203 +1,272 @@
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Ward Town Hall Booking</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Custom font for Inter, overriding Tailwind's default sans */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ward Town Hall Booking</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: white;
+      color: black;
+    }
 
-        /* Specific styles for the dropdown content height transition */
-        /* These cannot be purely Tailwind as they rely on max-height for accordion effect */
-        .dropdown-content-main {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.6s ease, padding 0.4s ease; /* Ensure padding transitions */
-        }
+    header {
+      background-color: white;
+      color: black;
+      padding: 40px 20px 20px 20px;
+      text-align: center;
+      position: relative;
+    }
 
-        /* Styles for when a main dropdown section is clicked and active */
-        .dropdown-section.active-click .dropdown-content-main {
-            /* max-height will be set dynamically by JavaScript for accurate height */
-            /* padding will be set dynamically by JavaScript */
-        }
+    .logo-image {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      margin-bottom: 10px;
+    }
 
-        /* For the top-right Community Contacts dropdown */
-        .community-dropdown-content {
-            display: none;
-            right: 0; /* Align to the right of the button */
-        }
+    nav.nav-top-right {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
 
-        .community-dropdown.active .community-dropdown-content {
-            display: block;
-        }
+    nav.nav-top-right a {
+      color: black;
+      text-decoration: none;
+      font-weight: 700;
+    }
 
-        .dropbtn-arrow {
-            transition: transform 0.3s ease;
-        }
+    nav.nav-top-right a:hover {
+      text-decoration: underline;
+    }
 
-        .community-dropdown.active .dropbtn-arrow {
-            transform: rotate(180deg);
-        }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
 
-        /* Custom style for responsive image within the header */
-        .logo-image {
-            max-width: 500px;
-            width: 100%; /* Ensure it's responsive */
-            height: auto;
-        }
+    .dropbtn {
+      background-color: transparent;
+      color: black;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+    }
 
-        /* Adjust iframe height for better display */
-        iframe {
-            min-height: 500px; /* Ensure a minimum height for embeds */
-        }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #f9f9f9;
+      color: black;
+      min-width: 350px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
 
-        /* Media query for smaller screens: Center nav items for better mobile UX */
-        @media (max-width: 600px) {
-            .nav-top-right-mobile-stack {
-                position: static;
-                flex-direction: column; /* Stack items vertically */
-                align-items: center; /* Center items horizontally */
-                margin-top: 20px;
-                gap: 10px; /* Reduce gap for mobile */
-            }
-            .community-dropdown-content {
-                left: 50%; /* Center dropdown content */
-                transform: translateX(-50%);
-                min-width: 90vw; /* Take more width on small screens */
-            }
-        }
-    </style>
+    .dropdown-content div {
+      padding: 18px 24px;
+      border-bottom: 1px solid #ddd;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+
+    .dropdown-content div a {
+      color: #003366;
+      text-decoration: none;
+    }
+
+    .dropdown-content div a:hover {
+      text-decoration: underline;
+    }
+
+    .dropdown-content div:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+      background-color: #f0f0f0;
+    }
+
+    .hero {
+      background: white;
+      text-align: center;
+      padding: 40px 20px 20px 20px;
+      color: black;
+    }
+
+    .instruction {
+      text-align: center;
+      font-size: 16px;
+      margin: 10px 0 30px 0;
+    }
+
+    .content {
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .dropdown-section {
+      margin-bottom: 30px;
+    }
+
+    .dropdown-section h2 {
+      background: #8B1A1A;
+      color: white;
+      padding: 15px;
+      margin: 0;
+      font-size: 28px;
+      cursor: pointer;
+      border-radius: 4px 4px 0 0;
+      transition: background 0.3s ease;
+    }
+
+    .dropdown-section:hover h2 {
+      background: #a52929;
+    }
+
+    .dropdown-content-main {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease, padding 0.4s ease;
+      background: white;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      padding: 0 20px;
+    }
+
+    .dropdown-section:hover .dropdown-content-main {
+      max-height: 1000px;
+      padding: 20px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+
+    footer {
+      background: white;
+      color: black;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 40px;
+      border-top: 1px solid #ccc;
+    }
+
+    @media (max-width: 600px) {
+      nav.nav-top-right {
+        position: static;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+      }
+
+      .logo-image {
+        max-width: 90%;
+        height: auto;
+      }
+    }
+  </style>
 </head>
-<body class="font-sans bg-white text-gray-800 min-h-screen">
+<body>
 
-    <header class="bg-white text-gray-900 py-10 md:py-16 px-4 text-center relative">
-        <!-- Original logo image link retained -->
-        <img src="flaxbournelogoweb.webp" alt="Flaxbourne Community Association" class="logo-image mx-auto mb-4" />
-        
-        <nav class="nav-top-right-mobile-stack md:absolute md:top-5 md:right-7 flex justify-center md:justify-end gap-5 items-center">
-            <a href="#" class="text-gray-900 font-bold hover:underline">Home</a>
-            
-            <div class="relative inline-block community-dropdown">
-                <button class="dropbtn bg-transparent text-gray-900 py-2 px-3 font-bold border-none cursor-pointer flex items-center gap-1" id="communityContactsBtn">
-                    Community Contacts <span class="dropbtn-arrow">▼</span>
-                </button>
-                <div class="community-dropdown-content absolute bg-gray-50 text-gray-900 min-w-[350px] shadow-lg z-10 rounded-lg overflow-hidden border border-gray-200">
-                    <div class="p-4 border-b border-gray-200 leading-relaxed text-sm">
-                        <strong class="text-blue-700">Flaxbourne Community Assn Chair</strong><br>John Hickman<br>021 731 026
-                    </div>
-                    <div class="p-4 border-b border-gray-200 leading-relaxed text-sm">
-                        <strong class="text-blue-700">Flaxbourne Community Assn Secretary</strong><br>Candi Callaghan<br>0277 563 708
-                    </div>
-                    <div class="p-4 border-b border-gray-200 leading-relaxed text-sm">
-                        <strong class="text-blue-700">Ward Water Scheme Chair</strong><br>Angus Moore<br>0274 513 012
-                    </div>
-                    <div class="p-4 border-b border-gray-200 leading-relaxed text-sm">
-                        <strong class="text-blue-700">Flaxbourne Heritage Chair</strong><br>Kevin Loe<br>0274 486 215
-                    </div>
-                    <div class="p-4 border-b border-gray-200 leading-relaxed text-sm">
-                        <strong class="text-blue-700">Flaxbourne A&amp;P Assn President</strong><br>Angus Moore<br>0274 513 012
-                    </div>
-                    <div class="p-4 leading-relaxed text-sm">
-                        <strong class="text-blue-700">Taimate Water Scheme Chair</strong><br>John Hickman<br>021 731 026
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
+  <header>
+    <img src="flaxbournelogoweb.webp" alt="Flaxbourne Community Association" class="logo-image" />
+    <nav class="nav-top-right">
+      <a href="#"><strong>Home</strong></a>
+      <div class="dropdown">
+        <button class="dropbtn"><strong>Community Contacts ▼</strong></button>
+        <div class="dropdown-content">
+          <div>
+            <strong>Flaxbourne Community Assn Chair</strong><br>
+            John Hickman<br>
+            021 731 026<br>
+            <a href="mailto:johnhickman@gmail.com">johnhickman@gmail.com</a>
+          </div>
+          <div>
+            <strong>Flaxbourne Community Assn Secretary</strong><br>
+            Candi Callaghan<br>
+            0277 563 708<br>
+            <a href="mailto:canditcallaghan@gmail.com">canditcallaghan@gmail.com</a>
+          </div>
+          <div>
+            <strong>Ward Water Scheme Chair</strong><br>
+            Angus Moore<br>
+            0274 513 012<br>
+            <a href="mailto:wardwaterscheme@gmail.com">wardwaterscheme@gmail.com</a>
+          </div>
+          <div>
+            <strong>Flaxbourne Heritage Chair</strong><br>
+            Kevin Loe<br>
+            0274 486 215<br>
+            <a href="mailto:loe.homestead@netz.co.nz">loe.homestead@netz.co.nz</a>
+          </div>
+          <div>
+            <strong>Flaxbourne A&amp;P Assn President</strong><br>
+            Angus Moore<br>
+            0274 513 012<br>
+            <a href="mailto:mooresheepshearing@gmail.com">mooresheepshearing@gmail.com</a>
+          </div>
+          <div>
+            <strong>Taimate Water Scheme Chair</strong><br>
+            John Hickman<br>
+            021 731 026<br>
+            <a href="mailto:johnhickman@gmail.com">johnhickman@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
 
-    <section class="hero bg-white text-center py-10 px-4 text-gray-900">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
-            Welcome to the Ward Town Hall Calendar and Booking Form
-        </h1>
-        <p class="text-lg md:text-xl text-gray-700">Book your next event below</p>
-    </section>
+  <section class="hero">
+    <h1><strong>Welcome to the Ward Town Hall Calendar and Booking Form</strong></h1>
+    <p>Book your next event below</p>
+  </section>
 
-    <div class="instruction text-center text-base mt-2 mb-8 px-4 text-gray-700">
-        Click on the headings below to view availability or submit a booking request.
+  <div class="instruction">
+    Hover over the headings below to view availability or submit a booking request.
+  </div>
+
+  <main class="content">
+    <div class="dropdown-section">
+      <h2>Availability Calendar ▼</h2>
+      <div class="dropdown-content-main">
+        <p><strong>Note:</strong> This calendar is for viewing only. To make a booking, please use the form below.</p>
+        <iframe src="https://calendar.google.com/calendar/embed?src=60786703e79b01cd784ce3ae80dbc6e360b201abb4beeaa81c2e185d0a313e9d%40group.calendar.google.com&ctz=Pacific%2FAuckland"></iframe>
+      </div>
     </div>
 
-    <main class="content p-4 max-w-5xl mx-auto">
+    <div class="dropdown-section">
+      <h2>Booking Request Form ▼</h2>
+      <div class="dropdown-content-main">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdXB9-gjlPbTsUH5RcCfdBy9H16qWIPmKBebUqdUEJYKDQb0A/viewform?embedded=true"
+                marginheight="0"
+                marginwidth="0">
+          Loading…
+        </iframe>
+      </div>
+    </div>
+  </main>
 
-        <!-- Availability Calendar Section -->
-        <div class="dropdown-section mb-8">
-            <h2 class="bg-red-700 text-white p-4 md:p-5 text-xl md:text-2xl font-bold cursor-pointer rounded-t-lg transition-colors duration-300 hover:bg-red-800">
-                Availability Calendar <span class="dropbtn-arrow">▼</span>
-            </h2>
-            <div class="dropdown-content-main bg-white rounded-b-lg shadow-md border border-gray-200 p-0">
-                <p class="p-4 pb-0 text-gray-700 text-sm">
-                    <strong>Note:</strong> This calendar is for viewing only. To make a booking, please use the form below.
-                </p>
-                <iframe src="https://calendar.google.com/calendar/embed?src=60786703e79b01cd784ce3ae80dbc6e360b201abb4beeaa81c2e185d0a313e9d%40group.calendar.google.com&ctz=Pacific%2FAuckland"
-                        class="w-full h-[600px] border-none mt-4 rounded-b-lg">
-                </iframe>
-            </div>
-        </div>
-
-        <!-- Booking Request Form Section -->
-        <div class="dropdown-section mb-8">
-            <h2 class="bg-red-700 text-white p-4 md:p-5 text-xl md:text-2xl font-bold cursor-pointer rounded-t-lg transition-colors duration-300 hover:bg-red-800">
-                Booking Request Form <span class="dropbtn-arrow">▼</span>
-            </h2>
-            <div class="dropdown-content-main bg-white rounded-b-lg shadow-md border border-gray-200 p-0">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdXB9-gjlPbTsUH5RcCfdBy9H16qWIPmKBebUqdUEJYKDQb0A/viewform?embedded=true"
-                        class="w-full h-[600px] border-none mt-4 rounded-b-lg"
-                        marginheight="0"
-                        marginwidth="0">
-                    Loading…
-                </iframe>
-            </div>
-        </div>
-
-    </main>
-
-    <footer class="bg-white text-gray-800 text-center py-5 mt-8 border-t border-gray-200">
-        <p>&copy; Flaxbourne Proud</p>
-    </footer>
-
-    <script>
-        // JavaScript for the "Community Contacts" dropdown to make it click-to-toggle
-        const communityContactsBtn = document.getElementById('communityContactsBtn');
-        const communityDropdown = communityContactsBtn.closest('.community-dropdown');
-
-        communityContactsBtn.addEventListener('click', function() {
-            communityDropdown.classList.toggle('active');
-        });
-
-        // Close the dropdown if the user clicks outside of it
-        document.addEventListener('click', function(event) {
-            if (!communityDropdown.contains(event.target) && communityDropdown.classList.contains('active')) {
-                communityDropdown.classList.remove('active');
-            }
-        });
-
-        // Implement click-to-toggle for the main dropdown sections (Calendar and Form)
-        document.querySelectorAll('.dropdown-section h2').forEach(header => {
-            header.addEventListener('click', function() {
-                const parentSection = this.closest('.dropdown-section');
-                const content = this.nextElementSibling;
-                const arrow = this.querySelector('.dropbtn-arrow');
-
-                parentSection.classList.toggle('active-click');
-
-                if (parentSection.classList.contains('active-click')) {
-                    // Open the section
-                    content.style.maxHeight = content.scrollHeight + "px"; // Set max-height to actual scroll height
-                    content.style.padding = "20px"; // Re-add padding
-                    if (arrow) arrow.style.transform = "rotate(180deg)";
-                } else {
-                    // Close the section
-                    content.style.maxHeight = "0";
-                    content.style.padding = "0 20px"; // Remove vertical padding, keep horizontal
-                    if (arrow) arrow.style.transform = "rotate(0deg)";
-                }
-            });
-        });
-    </script>
+  <footer>
+    &copy; Flaxbourne Proud
+  </footer>
 
 </body>
 </html>
